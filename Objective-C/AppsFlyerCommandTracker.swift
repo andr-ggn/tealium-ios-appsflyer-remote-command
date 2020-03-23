@@ -48,25 +48,25 @@ public class AppsFlyerCommandTracker: NSObject, AppsFlyerTrackable, TealiumRegis
     public func initialize(appId: String, appDevKey: String, config: [String: Any]) {
         AppsFlyerTracker.shared().appsFlyerDevKey = appDevKey
         AppsFlyerTracker.shared().appleAppID = appId
-        if let debug = config[AppsFlyer.Configuration.debug] as? Bool {
+        if let debug = config[AppsFlyerConstants.Configuration.debug] as? Bool {
             AppsFlyerTracker.shared().isDebug = debug
         }
-        if let disableAdTracking = config[AppsFlyer.Configuration.disableAdTracking] as? Bool {
+        if let disableAdTracking = config[AppsFlyerConstants.Configuration.disableAdTracking] as? Bool {
             AppsFlyerTracker.shared().disableIAdTracking = disableAdTracking
         }
-        if let disableAppleAdTracking = config[AppsFlyer.Configuration.disableAppleAdTracking] as? Bool {
+        if let disableAppleAdTracking = config[AppsFlyerConstants.Configuration.disableAppleAdTracking] as? Bool {
             AppsFlyerTracker.shared().disableAppleAdSupportTracking = disableAppleAdTracking
         }
-        if let minTimeBetweenSessions = config[AppsFlyer.Configuration.minTimeBetweenSessions] as? Int {
+        if let minTimeBetweenSessions = config[AppsFlyerConstants.Configuration.minTimeBetweenSessions] as? Int {
             AppsFlyerTracker.shared().minTimeBetweenSessions = UInt(minTimeBetweenSessions)
         }
-        if let anonymizeUser = config[AppsFlyer.Configuration.anonymizeUser] as? Bool {
+        if let anonymizeUser = config[AppsFlyerConstants.Configuration.anonymizeUser] as? Bool {
             AppsFlyerTracker.shared().deviceTrackingDisabled = anonymizeUser
         }
-        if let shouldCollectDeviceName = config[AppsFlyer.Configuration.collectDeviceName] as? Bool {
+        if let shouldCollectDeviceName = config[AppsFlyerConstants.Configuration.collectDeviceName] as? Bool {
             AppsFlyerTracker.shared().shouldCollectDeviceName = shouldCollectDeviceName
         }
-        if let customData = config[AppsFlyer.Configuration.customData] as? [AnyHashable: Any] {
+        if let customData = config[AppsFlyerConstants.Configuration.customData] as? [AnyHashable: Any] {
             AppsFlyerTracker.shared().customData = customData
         }
     }
@@ -88,7 +88,7 @@ public class AppsFlyerCommandTracker: NSObject, AppsFlyerTrackable, TealiumRegis
     /// https://support.appsflyer.com/hc/en-us/articles/207364076-Measuring-Push-Notification-Re-Engagement-Campaigns
     public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         AppsFlyerTracker.shared()?.handlePushNotification(userInfo)
-        AppsFlyerTracker.shared()?.trackEvent(AppsFlyer.Events.pushNotificationOpened, withValues: [:])
+        AppsFlyerTracker.shared()?.trackEvent(AppsFlyerConstants.Events.pushNotificationOpened, withValues: [:])
     }
 
     public func handlePushNofification(payload: [String: Any]?) {
