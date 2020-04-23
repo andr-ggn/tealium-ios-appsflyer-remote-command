@@ -137,7 +137,7 @@ public class AppsFlyerCommandTracker: NSObject, AppsFlyerTrackable, TealiumRegis
 extension AppsFlyerCommandTracker: AppsFlyerTrackerDelegate {
 
     public func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
-        guard let tealium = tealium else { return }
+        guard let tealium = self.tealium else { return }
         guard let conversionInfo = conversionInfo as? [String: Any],
               let first_launch_flag = conversionInfo["is_first_launch"] as? Bool else {
                 // Fallback
@@ -177,7 +177,7 @@ extension AppsFlyerCommandTracker: AppsFlyerTrackerDelegate {
     }
     
     public func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
-        guard let tealium = tealium else { return }
+        guard let tealium = self.tealium else { return }
         guard let attributionData = attributionData as? [String: Any] else {
             return tealium.track(title: "app_open_attribution",
                 data: nil,
