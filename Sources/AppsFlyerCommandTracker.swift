@@ -138,8 +138,8 @@ extension AppsFlyerCommandTracker: AppsFlyerTrackerDelegate {
 
     public func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
         guard let tealium = tealium else { return }
-        guard let installData = installData as? [String: Any],
-              let first_launch_flag = installData["is_first_launch"] as? Bool else {
+        guard let conversionInfo = conversionInfo as? [String: Any],
+              let first_launch_flag = conversionInfo["is_first_launch"] as? Bool else {
                 // Fallback
                 tealium.track(title: "conversion_data_received",
                 data: nil,
@@ -151,17 +151,17 @@ extension AppsFlyerCommandTracker: AppsFlyerTrackerDelegate {
             return
         }
         tealium.track(title: "conversion_data_received",
-        data: installData,
+        data: conversionInfo,
         completion: nil)
         
         // Debug output
-        guard let status = installData["af_status"] as? String else {
+        guard let status = conversionInfo["af_status"] as? String else {
             return
         }
                 
         if (status == "Non-organic") {
-            if let media_source = installData["media_source"],
-                let campaign = installData["campaign"] {
+            if let media_source = conversionInfo["media_source"],
+                let campaign = conversionInfo["campaign"] {
                 print("This is a Non-Organic install. Media source: \(media_source) Campaign: \(campaign)")
             }
         } else {
