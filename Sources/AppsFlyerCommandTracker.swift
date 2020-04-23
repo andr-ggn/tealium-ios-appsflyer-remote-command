@@ -148,6 +148,7 @@ extension AppsFlyerCommandTracker: AppsFlyerTrackerDelegate {
         }
         guard first_launch_flag else {
             print("Not First Launch")
+            return
         }
         tealium.track(title: "conversion_data_received",
         data: installData,
