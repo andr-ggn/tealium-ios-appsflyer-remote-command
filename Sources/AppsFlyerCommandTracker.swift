@@ -7,11 +7,10 @@
 //
 
 import Foundation
+import AppsFlyerLib
 #if COCOAPODS
-    import AppsFlyerLib
     import TealiumSwift
 #else
-    import AppsFlyerTracker
     import TealiumCore
     import TealiumDelegate
     import TealiumTagManagement
@@ -137,46 +136,45 @@ public class AppsFlyerCommandTracker: NSObject, AppsFlyerTrackable, TealiumRegis
 
 extension AppsFlyerCommandTracker: AppsFlyerTrackerDelegate {
 
-    public func onConversionDataReceived(_ installData: [AnyHashable: Any]) {
+    public func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
         guard let tealium = tealium else { return }
-        guard let installData = installData as? [String: Any] else {
-            return tealium.track(title: "conversion_data_received",
+        guard let installData = installData as? [String: Any],
+              let first_launch_flag = installData["is_first_launch"] as? Bool else {
+                // Fallback
+                tealium.track(title: "conversion_data_received",
                 data: nil,
                 completion: nil)
+                return
+        }
+        guard first_launch_flag else {
+            print("Not First Launch")
         }
         tealium.track(title: "conversion_data_received",
-            data: installData,
-            completion: nil)
+        data: installData,
+        completion: nil)
         
-        guard let first_launch_flag = installData["is_first_launch"] as? Int else {
-            return
-        }
-        
+        // Debug output
         guard let status = installData["af_status"] as? String else {
             return
         }
-        
-        if (first_launch_flag == 1) {
-            if (status == "Non-organic") {
-                if let media_source = installData["media_source"],
-                    let campaign = installData["campaign"] {
-                    print("This is a Non-Organic install. Media source: \(media_source) Campaign: \(campaign)")
-                }
-            } else {
-                print("This is an organic install.")
+                
+        if (status == "Non-organic") {
+            if let media_source = installData["media_source"],
+                let campaign = installData["campaign"] {
+                print("This is a Non-Organic install. Media source: \(media_source) Campaign: \(campaign)")
             }
         } else {
-            print("Not First Launch")
+            print("This is an organic install.")
         }
     }
 
-    public func onConversionDataRequestFailure(_ error: Error) {
+    public func onConversionDataFail(_ error: Error) {
         tealium?.track(title: "appsflyer_error",
-            data: ["error_name": "conversion_data_request_failure",
+            data: ["error_name": "conversion_data_failure",
                 "error_description": error.localizedDescription],
             completion: nil)
     }
-
+    
     public func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
         guard let tealium = tealium else { return }
         guard let attributionData = attributionData as? [String: Any] else {
@@ -192,20 +190,6 @@ extension AppsFlyerCommandTracker: AppsFlyerTrackerDelegate {
     public func onAppOpenAttributionFailure(_ error: Error) {
         tealium?.track(title: "appsflyer_error",
             data: ["error_name": "app_open_attribution_failure",
-                "error_description": error.localizedDescription],
-            completion: nil)
-    }
-
-    public func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
-        let conversion = conversionInfo as? [String: Any] ?? [:]
-        tealium?.track(title: "conversion_data_succsss",
-            data: conversion,
-            completion: nil)
-    }
-
-    public func onConversionDataFail(_ error: Error) {
-        tealium?.track(title: "appsflyer_error",
-            data: ["error_name": "conversion_data_failure",
                 "error_description": error.localizedDescription],
             completion: nil)
     }
