@@ -11,7 +11,7 @@ import Foundation
     import AppsFlyerLib
     import TealiumSwift
 #else
-    import AppsFlyerTracker
+    import AppsFlyerLib
     import TealiumCore
     import TealiumDelegate
     import TealiumTagManagement
