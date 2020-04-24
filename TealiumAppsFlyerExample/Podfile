@@ -6,7 +6,7 @@ target 'TealiumAppsFlyerExample' do
   use_frameworks!
 
   # Pods for TealiumAppsFlyerExample
-  pod 'TealiumAppsFlyer', '~> 0.0.1'
+  pod 'TealiumAppsFlyer',  :git => 'https://github.com/af-obodovskyi/tealium-ios-appsflyer-remote-command.git', :branch => 'master'
   pod 'tealium-swift/TealiumLogger', '~> 1.9'
   pod 'tealium-swift/TealiumTagManagement', '~> 1.9'
   pod 'tealium-swift/TealiumAppData', '~> 1.9'
