@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		252F7E5024531170008F98C6 /* AppsFlyerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252F7E4F24531170008F98C6 /* AppsFlyerLib.framework */; };
 		CF01034A232AFF76007A03EE /* TealiumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF0D0226232AC591005BFE15 /* TealiumCore.framework */; };
 		CF01034B232AFF76007A03EE /* TealiumRemoteCommands.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF0D0225232AC591005BFE15 /* TealiumRemoteCommands.framework */; };
 		CF0D01F5232AB7CB005BFE15 /* TealiumAppsFlyer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF0D01EB232AB7CB005BFE15 /* TealiumAppsFlyer.framework */; };
@@ -26,8 +27,6 @@
 		CF9F2DED2423E67B00564C46 /* TealiumDelegate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF0D0223232AC591005BFE15 /* TealiumDelegate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CF9F2DEE2423E67B00564C46 /* TealiumCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF0D0226232AC591005BFE15 /* TealiumCore.framework */; };
 		CF9F2DEF2423E67B00564C46 /* TealiumCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF0D0226232AC591005BFE15 /* TealiumCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CF9F2DF02423E67B00564C46 /* AppsFlyerTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF0D0224232AC591005BFE15 /* AppsFlyerTracker.framework */; };
-		CF9F2DF12423E67B00564C46 /* AppsFlyerTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF0D0224232AC591005BFE15 /* AppsFlyerTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +50,6 @@
 				CF9F2DED2423E67B00564C46 /* TealiumDelegate.framework in Embed Frameworks */,
 				CF9F2DE92423E67B00564C46 /* TealiumTagManagement.framework in Embed Frameworks */,
 				CF9F2DEF2423E67B00564C46 /* TealiumCore.framework in Embed Frameworks */,
-				CF9F2DF12423E67B00564C46 /* AppsFlyerTracker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +57,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		252F7E4F24531170008F98C6 /* AppsFlyerLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppsFlyerLib.framework; path = Carthage/Build/iOS/AppsFlyerLib.framework; sourceTree = "<group>"; };
 		CF0D01EB232AB7CB005BFE15 /* TealiumAppsFlyer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TealiumAppsFlyer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF0D01EE232AB7CB005BFE15 /* TealiumAppsFlyer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TealiumAppsFlyer.h; sourceTree = "<group>"; };
 		CF0D01EF232AB7CB005BFE15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,9 +84,9 @@
 			files = (
 				CF9F2DEA2423E67B00564C46 /* TealiumRemoteCommands.framework in Frameworks */,
 				CF9F2DEC2423E67B00564C46 /* TealiumDelegate.framework in Frameworks */,
+				252F7E5024531170008F98C6 /* AppsFlyerLib.framework in Frameworks */,
 				CF9F2DE82423E67B00564C46 /* TealiumTagManagement.framework in Frameworks */,
 				CF9F2DEE2423E67B00564C46 /* TealiumCore.framework in Frameworks */,
-				CF9F2DF02423E67B00564C46 /* AppsFlyerTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +149,7 @@
 		CF0D0221232AC590005BFE15 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				252F7E4F24531170008F98C6 /* AppsFlyerLib.framework */,
 				CF0D0224232AC591005BFE15 /* AppsFlyerTracker.framework */,
 				CF0D0226232AC591005BFE15 /* TealiumCore.framework */,
 				CF0D0223232AC591005BFE15 /* TealiumDelegate.framework */,
@@ -278,7 +278,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/TealiumCore.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TealiumTagManagement.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TealiumRemoteCommands.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/AppsFlyerTracker.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TealiumDelegate.framework",
 			);
 			name = Carthage;
